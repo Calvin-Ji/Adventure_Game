@@ -1,36 +1,53 @@
 package Enemy;
 
-import Player.Player;
-
 public class Water extends Enemy {
-    private boolean usedSpecialAbility = false;
+    private boolean damageReduced = false; // Tracks if player's damage is reduced
 
     public Water(String name, String description) {
-        super(name, description, new AttackList());
+        super(name, description, new AttackList(), "Water"); // Set type to "Water"
     }
 
     @Override
     public void useSpecialAbility() {
-        if (health < 5 && !usedSpecialAbility) {
-            System.out.println(name + " activates its water shield!");
-            usedSpecialAbility = true;
-        }
+        System.out.println(name + " activated its water shield, reducing player's damage.");
+        usedSpecialAbility = true;
+        damageReduced = true;
+        // Note: Implement the actual damage reduction logic in your Battle system
     }
 
-    public void action(Player player) {
-        if (health < 5 && !usedSpecialAbility) {
-            useSpecialAbility();
-        }
+    @Override
+    protected boolean shouldUseSpecialAbility() {
+        return health < 5 && !usedSpecialAbility;
+    }
 
-        if (usedSpecialAbility) {
-            // reduce player's damage to realize defence
-            player.setDamage(player.getDamage() - 2);
-            if (player.getDamage() < 0) {
-                player.setDamage(0); // make sure damage can not be negative
-            }
-            attackList.defense();
+    @Override
+    public int performAction() {
+        if (shouldUseSpecialAbility()) {
+            useSpecialAbility();
+            return this.damage;
         } else {
-            attackList.normalAttack(); // or normal attack
+            String attackType = getRandomAttack();
+            switch (attackType) {
+                case "normal":
+                    this.damage = attackList.normalAttack();
+                    System.out.println(name + " used a normal attack, dealing "
+                            + damage + " damage.");
+                    return damage;
+                case "critical":
+                    this.damage = attackList.criticalStrike();
+                    System.out.println(name + " used a critical strike, dealing "
+                            + damage + " damage.");
+                    return damage;
+                case "defense":
+                    int absorbed = attackList.defense();
+                    System.out.println(name + " used defense, absorbing " + absorbed + " damage.");
+                    this.damage = 0;
+                    return this.damage;
+                default:
+                    System.out.println(name + " used an unknown attack type.");
+                    this.damage = 0;
+                    return this.damage;
+            }
         }
     }
 }

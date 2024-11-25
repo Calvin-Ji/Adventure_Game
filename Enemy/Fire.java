@@ -1,31 +1,53 @@
 package Enemy;
 
 public class Fire extends Enemy {
-    private boolean usedSpecialAbility = false;
+    private boolean convertedToCritical = false; // Tracks if normal attacks are converted
 
     public Fire(String name, String description) {
-        super(name, description, new AttackList());
+        super(name, description, new AttackList(), "Fire"); // Set type to "Fire"
     }
 
     @Override
     public void useSpecialAbility() {
-        if (health < 3 && !usedSpecialAbility) {
-            System.out.println(name + " activates its special ability! All normal attacks become critical strikes.");
-            usedSpecialAbility = true;
-        } else {
-            System.out.println(name + " cannot use its special ability.");
-        }
+        System.out.println(name + " activated its special ability! All normal attacks are now critical strikes.");
+        usedSpecialAbility = true;
+        convertedToCritical = true;
     }
 
-    public void action() {
-        if (health < 3 && !usedSpecialAbility) {
-            useSpecialAbility();
-        }
+    @Override
+    protected boolean shouldUseSpecialAbility() {
+        return health < 5 && !usedSpecialAbility;
+    }
 
-        if (usedSpecialAbility) {
-            attackList.criticalStrike();
+    @Override
+    public int performAction() {
+        if (shouldUseSpecialAbility()) {
+            useSpecialAbility();
+            return this.damage;
         } else {
-            attackList.normalAttack();
+            String attackType = getRandomAttack();
+            if (convertedToCritical && attackType.equals("normal")) {
+                attackType = "critical"; // Convert normal to critical
+            }
+            switch (attackType) {
+                case "normal":
+                    this.damage = attackList.normalAttack();
+                    System.out.println(name + " used a normal attack, dealing " + damage + " damage.");
+                    return damage;
+                case "critical":
+                    this.damage = attackList.criticalStrike();
+                    System.out.println(name + " used a critical strike, dealing " + damage + " damage.");
+                    return damage;
+                case "defense":
+                    int absorbed = attackList.defense();
+                    System.out.println(name + " used defense, absorbing " + absorbed + " damage.");
+                    this.damage = 0;
+                    return this.damage;
+                default:
+                    System.out.println(name + " used an unknown attack type.");
+                    this.damage = 0;
+                    return this.damage;
+            }
         }
     }
 }

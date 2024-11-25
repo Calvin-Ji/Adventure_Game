@@ -1,16 +1,28 @@
 package Enemy;
 
+
+import java.util.Random;
+
 public class AttackList {
-    public void normalAttack() {
-        System.out.println("Normal attack! The player loses 2 health.");
+    private Random random;
+
+    public AttackList() {
+        this.random = new Random();
     }
 
-    public void criticalStrike() {
-        System.out.println("Critical strike! The player loses 5 health.");
+    // Normal attack: 1-3 damage
+    public int normalAttack() {
+        return random.nextInt(3) + 1; // Generates 1, 2, or 3
     }
 
-    public void defense() {
-        System.out.println("Defense! Enemy absorbs 3 damage from the attack.");
+    // Critical strike: 4-6 damage
+    public int criticalStrike() {
+        return random.nextInt(3) + 4; // Generates 4, 5, or 6
+    }
+
+    // Defense: absorbs 1-3 damage
+    public int defense() {
+        return random.nextInt(3) + 1; // Generates 1, 2, or 3
     }
 }
 
