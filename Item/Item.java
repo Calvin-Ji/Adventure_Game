@@ -6,6 +6,7 @@ public abstract class Item {
     private String floorDescription;
     private String type;
     private boolean locked;
+    private int damage;
 
     // This is a constructor for Item; it cannot be directly instantiated but can be used by concrete subclasses.
     public Item(String name, String description, String floorDescription, String type) {
@@ -17,16 +18,15 @@ public abstract class Item {
     }
 
     // Abstract method to interact with the item
-    public abstract void Interact(Item location);
+    public abstract void interact(Item location);
+
+    public void interact(){
+        System.out.println("you stare at " + name + " blankly. Nothing happens");
+    }
 
     // Regular method to pick up the item
     // this method should to regularly overrided such that awkward moment of you picked up exit will not happen
     public abstract Item pickup();
-
-    // Regular method to inspect the item (has a body)
-    public void Inspect() {
-        System.out.println("Inspecting the item: " + name + ": " + description + ".");
-    }
 
     public String getName() {
         return name;
@@ -48,8 +48,9 @@ public abstract class Item {
         return type;
     }
 
+    public int getDamage() {return damage;}
+
     public void setLocked(boolean key) {
         this.locked = key;
     }
 }
-

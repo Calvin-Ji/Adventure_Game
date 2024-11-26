@@ -15,7 +15,7 @@ public class NPC extends Item {
     }
 
     @Override
-    public void Interact(Item location) {
+    public void interact(Item location) {
         // Create a Scanner object to read input from the terminal
         Scanner scanner = new Scanner(System.in);
 
