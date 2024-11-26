@@ -97,6 +97,7 @@ public class Battle {
      * and their health is updated accordingly. The method checks if either the player
      * or the enemy has been defeated after the exchange.
      */
+
     public void battleRound() {
         // Check if the player and enemy are still alive
         while (player.getHealth() <= 0 || enemy.getHealth() <= 0) {
