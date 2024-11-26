@@ -67,6 +67,9 @@ public class Player {
         this.damage = damage;
     }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
 
     // these method might need to be put somewhere else
 

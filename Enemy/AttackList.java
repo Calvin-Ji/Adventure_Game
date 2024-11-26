@@ -7,6 +7,19 @@ public class AttackList {
 
     public AttackList() {
         this.random = new Random();
+
+    }
+
+    // Normal attack: 1-3 damage
+    public int normalAttack() {
+        return random.nextInt(3) + 1; // Generates 1, 2, or 3
+    }
+
+    // Critical strike: 4-6 damage
+    public int criticalStrike() {
+        return random.nextInt(3) + 4; // Generates 4, 5, or 6
+    }
+
     }
 
     // Normal attack: 1-3 damage

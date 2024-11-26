@@ -19,4 +19,6 @@ public class Grass extends Enemy {
     }
 
     // No need to override performAction() as special ability doesn't affect attack logic
+
+}
 }

@@ -18,3 +18,4 @@ public class Controller {
         gui.updateStats(); // Update the player's stats on the GUI
     }
 }
+
