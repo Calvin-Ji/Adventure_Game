@@ -146,9 +146,11 @@ public class AppBuilder {
         roomInteractor.addItem(wandofwater);
         roomInteractor.addBattle(wandofwater, Clover);
         roomInteractor.addItem(forest_exit);
+
         LevelInteractor levelInteractor = new LevelInteractor(dungen);
         levelInteractor.addLevel(room2);
         Room trainningroom = dungen.getLevels().get(1);
+        this.player = new Player(5,15,2,trainningroom);
 
         PlayerOutBoundary outputBoundary = new PlayerOutBoundary();
         PlayerInputBoundary inputBoundary = new PlayerInputBoundary(player, outputBoundary);
@@ -161,10 +163,11 @@ public class AppBuilder {
         String action1 = guiUtility.getValidInput("Entering the forest, you see an old man not far away. You " +
                 "prepare to ask him for directions (type 'walktooldman' to talk to the old man). ",
                 actionRepositor.getValidActions());
+
         actionRepository.handleAction(action1);
         // trigger battle skip
         String action2 = guiUtility.getValidInput("After a hard-fought victory, you catch your breath and look" +
-                " at the old man.(type 'interact' to talk to the old man)", actionRepositor.getValidActions());
+                " at the old man.(type 'interact the old man' to talk to the old man)", actionRepositor.getValidActions());
         actionRepository.handleAction(action2);
         // API skip
         guiUtility.displayOutput("After solving it, you feel a strange sensation and decide to move forward.");

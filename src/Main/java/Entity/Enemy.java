@@ -9,8 +9,9 @@ public abstract class Enemy {
     protected AttackList attackList;
     protected Random random;
     protected final String type; // element
-    protected boolean usedSpecialAbility = false;
+
     protected int damage; // Damage dealt in the latest attack
+    public boolean usedSpecialAbility = false;
 
     public Enemy(String name, String description, String type) {
         this.name = name;
@@ -55,6 +56,11 @@ public abstract class Enemy {
     public AttackList getAttackList() {
         return attackList;
     }
+
+    public void setAttackList(AttackList attackList) {
+        this.attackList = attackList;
+    }
+
 
     public int getDamage() { return damage; }
 }
