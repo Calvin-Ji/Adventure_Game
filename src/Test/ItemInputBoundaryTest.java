@@ -107,4 +107,16 @@ class ItemInputBoundaryTest {
         // Assuming outputBoundary will store the results
         assertEquals(outputBoundary.getMessage(), "Would you like a riddle or my speech dialogue?");
     }
+
+    @Test
+    void testRiddleAPI() {
+        // Create an NPC instance
+        NPC npc = new NPC("Bob", "First NPC", "Wearing a green hat and has a big nose", "Hi!");
+
+        //Check if the API call is successful by checking if our contructor for NPC has made an API call successfully, which then sets the riddle
+        //and answer instance variables accordingly, making them both no longer null.
+        assertNotNull(npc.getRiddle());
+        assertNotNull(npc.getAnswer());
+    }
+    
 }
