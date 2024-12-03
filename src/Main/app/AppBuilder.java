@@ -1,4 +1,4 @@
-package src.Main.app;
+package app;
 
 import Entity.*;
 import Entity.TicTacToe.TicTacToeBoard;
@@ -47,23 +47,19 @@ public class AppBuilder {
     public AppBuilder addTrainingRoom() {
         // initailize
 
-        Key key = new Key("mailbox", "There is a key in the mail_box!", "a key lies on the floor", 1, "regular");
-        Exit gate = new Exit("gate", "The exit is covered by a thick spider web", "There is a heavy gate in " +
+        Key key = new Key("key", "There is a key in the mail_box!", "a key lies on the floor", 1, "regular");
+        Exit exit = new Exit("exit", "The exit is covered by a thick spider web", "There is a heavy gate in " +
                 "front of you.","regular");
         Equipment sword = new Equipment("dragon fang sword",
                 "A weapon bestowed upon warriors chosen by the Dragon Clan. It holds the power of the dragon!",
                 "A sword is stuck on the wall", 4, null);
-        //可能这里有点问题
-        Equipment spiderweb = new Equipment("spiderweb",
-                "This is a poisonous spiderweb!",
-                "", 2, null);
+
 
         Room room1 = new Room("This is the training room for beginners!");
         RoomInteraction roomInteractor = new RoomInteraction(room1);
         roomInteractor.addItem(key);
         roomInteractor.addItem(sword);
-        roomInteractor.addItem(gate);
-        roomInteractor.addItem(spiderweb);
+        roomInteractor.addItem(exit);
 
         LevelInteractor levelInteractor = new LevelInteractor(dungen);
         levelInteractor.addLevel(room1);
@@ -92,15 +88,11 @@ public class AppBuilder {
         String action3 = guiUtility.getValidInput("There are too many things in your hands, try putting what " +
                 "you are holding in your bag by entering 'put it in bag'.", actionRepositor.getValidActions());
         actionRepository.handleAction(action3);
-        String action4 = guiUtility.getValidInput("There is a mail-box in the center of the room. Enter 'walk " +
-                "to the mailbox' to move towards the mail-box", actionRepositor.getValidActions());
+        String action4 = guiUtility.getValidInput("There is a mail-box in the center of the room and there is a key in it. Enter 'walk to the mailbox' to move towards the mail-box", actionRepositor.getValidActions());
         actionRepository.handleAction(action4);
-        String action5 = guiUtility.getValidInput("There is a key in the mail-box. Enter 'pick up key' to " +
-                "grab the key", actionRepositor.getValidActions());
+        String action5 = guiUtility.getValidInput("Enter 'pick up key' to grab the key", actionRepositor.getValidActions());
         actionRepository.handleAction(action5);
-        String action6 = guiUtility.getValidInput("Look ahead! It seems to be a door, but it's completely " +
-                "shrouded in a massive spiderweb that glistens ominously in the dim light. Try to walk to there by " +
-                "entering walk to the spider", actionRepositor.getValidActions());
+        String action6 = guiUtility.getValidInput("Look ahead! It seems to be a door, but it's completely shrouded in a massive spiderweb that glistens ominously in the dim light. Try to walk to there by entering walk to the spiderweb", actionRepositor.getValidActions());
         actionRepository.handleAction(action6);
 
         String action7 = guiUtility.getValidInput( "You feel an eerie chill as you step closer. Now, you have" +
@@ -109,6 +101,15 @@ public class AppBuilder {
                 + "2. attack it with your sword – Strike the web with all your might, ready for whatever might emerge.\n"
                 + "3. use the key in your hand – Perhaps this key is meant for the door hidden beyond the web.\n\n"
                 + "What will you do?", actionRepositor.getValidActions());
+
+        if ("clean the spiderweb".equals(action7)) {
+            String action8 = guiUtility.getValidInput("Try opening the door by entering 'use key to open the door'", actionRepositor.getValidActions());
+            actionRepository.handleAction(action8);
+        } else if ("attack it with your sword".equals(action7)) {
+            guiUtility.displayOutput("You swing your sword with determination, slicing through the thick webbing. The web starts to break apart, but the force of your attack leaves your sword slightly dull. The way forward is now open. But the door is still locked");
+            String action9 = guiUtility.getValidInput("Try opening the door by entering 'use key to open the door'", actionRepositor.getValidActions());
+            actionRepository.handleAction(action9);
+        }
 
         actionRepository.handleAction(action7);
 
@@ -121,14 +122,14 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addTrainingForest() {
-        Fire GhostRider = new Fire("Ghost Rider",
+        Enemy GhostRider = new Fire("Ghost Rider",
                 "An ancient soul guardian. He ravages the mortal realm with blazing fire.");
         Equipment FlameDragonBow = new Equipment("Flame Dragon Bow","A legendary weapon bestowed by the Flame Dragon " +
                 "itself, each bow is engulfed in roaring flames. When fired, it burns as fiercely as the dragon's " +
                 "breath.","on the floor",3,"fire");
-        NPC Oldman = new NPC("Oldman","An elderly scavenger","by the side of the forest",
+        NPC Oldman = new NPC("NPC","An elderly scavenger","by the side of the forest",
                 "One man’s scrap is another’s treasure. What will your story leave behind, traveler?");
-        Equipment wandofwater = new Equipment("Wand of Water","A crystal wand etched with glowing " +
+        Equipment wandofwater = new Equipment("Equipment","A crystal wand etched with glowing " +
                 "blue runes, it channels the tranquil yet powerful essence of water, controlling tides and unleashing " +
                 "elemental waves.","on the grass",4,"water");
         Grass Clover = new Grass ("Clover","is a sly manipulator who thrives on deception, using charm " +
@@ -140,17 +141,23 @@ public class AppBuilder {
         Room room2 = new Room("This is the training forest for beginners!.");
 
 
-        RoomInteraction roomInteractor = new RoomInteraction(room2);
-        roomInteractor.addItem(Oldman);
-        roomInteractor.addBattle(Oldman, GhostRider);
-        roomInteractor.addItem(wandofwater);
-        roomInteractor.addBattle(wandofwater, Clover);
-        roomInteractor.addItem(forest_exit);
+
+//        RoomInteraction roomInteractor = new RoomInteraction(room2);
+//        roomInteractor.addItem(Oldman);
+//        roomInteractor.addBattle(Oldman, GhostRider);
+//        roomInteractor.addItem(wandofwater);
+//        roomInteractor.addBattle(wandofwater, Clover);
+//        roomInteractor.addItem(forest_exit);
+
 
         LevelInteractor levelInteractor = new LevelInteractor(dungen);
         levelInteractor.addLevel(room2);
+        levelInteractor.addPlayer(player);
+
         Room trainningroom = dungen.getLevels().get(1);
-        this.player = new Player(5,15,2,trainningroom);
+
+        player.setCurrRoom(trainningroom);
+
 
         PlayerOutBoundary outputBoundary = new PlayerOutBoundary();
         PlayerInputBoundary inputBoundary = new PlayerInputBoundary(player, outputBoundary);
@@ -165,20 +172,58 @@ public class AppBuilder {
                 actionRepositor.getValidActions());
 
         actionRepository.handleAction(action1);
+        guiUtility.displayOutput("There is a monster in front of you! You must fight!");
+        guiUtility.displayOutput(GhostRider.getName());
+        guiUtility.displayOutput("An ancient soul guardian. He ravages the mortal realm with blazing fire.");
+        guiUtility.displayOutput("Ghost rider use the attack to attack you 4 damage!");
+        guiUtility.displayOutput("Now you use the correct equipment: dragon fang sword, the only equipment you can use inside your bag");
+        guiUtility.displayOutput("You attack the enemy 6 health. Ghost rider: health :9");
+        guiUtility.displayOutput("The enemy choose to defence. It will help him protect 3 damage of attack!");
+        guiUtility.displayOutput("Now the Fire element enemy Ghost Rider's health has dropped below 5! The special ability of the enemy will start");
+        guiUtility.displayOutput("Ghost Rider attack you 7 damage because the special ability of him can make him have critical Strike!");
+        guiUtility.displayOutput("Your health is 4 now. Give the enemy the last hit to make success!!");
+        guiUtility.displayOutput("You attack the enemy 6 health. The ghost Rider die!");
+        guiUtility.displayOutput("Congrats!!!! You successfully bit the fire enemy!");
+        guiUtility.displayOutput("This is the gift for your success!");
+        guiUtility.displayOutput(FlameDragonBow.getDescription());
+
+
         // trigger battle skip
         String action2 = guiUtility.getValidInput("After a hard-fought victory, you catch your breath and look" +
                 " at the old man.(type 'interact the old man' to talk to the old man)", actionRepositor.getValidActions());
         actionRepository.handleAction(action2);
+        guiUtility.displayOutput(Oldman.getSpeech());
+        guiUtility.displayOutput(Oldman.getRiddle());
+        guiUtility.displayOutput("Do you have the answer now? Here is your answer");
+        guiUtility.displayOutput(Oldman.getAnswer());
         // API skip
         guiUtility.displayOutput("After solving it, you feel a strange sensation and decide to move forward.");
 
         String action3 = guiUtility.getValidInput("In the distance, you see a glimmer of light. As you get " +
                 "closer, you discover it's a Wand of Water. Quickly, type 'walk to wand of water' to take a " +
                 "closer look!", actionRepositor.getValidActions());
+        guiUtility.displayOutput("There is an enemy in front of you! You must fight!");
+        guiUtility.displayOutput(Clover.getName());
+        guiUtility.displayOutput("is a sly manipulator who thrives on deception, using charm and lies to exploit others for personal gain. Marked by a twisted four-leaf clover, they leave betrayal and chaos wherever they go.");
+        guiUtility.displayOutput("Clover use the attack to attack you 4 damage!");
+        guiUtility.displayOutput("Now you use the correct equipment: FlameDragonBow, the equipment you just get");
+        guiUtility.displayOutput("You attack the enemy 4 health. Clover: health :11");
+        guiUtility.displayOutput("The enemy choose to attack. It attacks 6 damage!");
+        guiUtility.displayOutput("Now the Grass element enemy health has dropped below 5! The special ability of the enemy will start");
+        guiUtility.displayOutput("Ghost Rider attack you 4 damage but the health of him become 8, because the special ability of him can make him healing!");
+        guiUtility.displayOutput("Your health is 7 now. Give the enemy the last hit to make success!!");
+        guiUtility.displayOutput("You attack the enemy 6 health.");
+        guiUtility.displayOutput("The enemy attacks you 4 health.");
+        guiUtility.displayOutput("You attack the enemy 6 health. The enemy die!");
+        guiUtility.displayOutput("Congrats!!!! You successfully bit the grass enemy!");
+        guiUtility.displayOutput("This is the gift for your success!");
+        guiUtility.displayOutput(FlameDragonBow.getDescription());
         actionRepository.handleAction(action3);
+
         //triger battle
         guiUtility.displayOutput("You rid the land of evil, deeply moving the Spirit of the Forest. In gratitude, it " +
                 "decides to grant you an additional 10 health points to help you face the final trial. Health +10");
+        guiUtility.displayOutput("You finally made it!! you already have the magic ring with you!!");
         int health = player.getHealth() + 10;
         player.setHealth(health);
         return this;
@@ -288,7 +333,9 @@ public class AppBuilder {
         while (userCommand != 9) {
             view.displayBoard(board.getBoard());
             guiUtility.displayOutput("Player " + board.getCurrentPlayer() + ", enter your move by typing the row then a space then column number. Your options are 0, 1, or 2.");
-            int row = scanner.nextInt();
+            String numberStr = guiUtility.getValidInput("Enter the row:",
+                    actionRepositor.getValidActions());
+            int row = Integer.parseInt(numberStr);
             int col = scanner.nextInt();
             controller.makeMove(row, col);
             if (board.checkWin() != '-' || board.isFull()) {

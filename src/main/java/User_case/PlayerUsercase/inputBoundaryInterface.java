@@ -52,5 +52,7 @@ public interface inputBoundaryInterface {
      */
     void interact(String holdingWhat, String itemAtLocation);
 
+    void interact_spiderweb();
+
 }
 

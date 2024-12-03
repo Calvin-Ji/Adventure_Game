@@ -174,14 +174,16 @@ public class PlayerInputBoundary implements inputBoundaryInterface {
             return;
         }
 
-        if (holdingWhat.equals("key") && itemAtLocation.equals("exit")) {
-            outputBoundary.displayMessage("Congratulations! You successfully unlocked the exit.");
-            return;
-        }
-
         outputBoundary.displayMessage("You tried to interact " + holdingWhat + " with " + itemAtLocation + ".");
         new ItemInputBoundary(player.getHolding(), new ItemOutputBoundary()).interact(player.getLocation());
-        new ItemInputBoundary(player.getLocation(), new ItemOutputBoundary()).interact(player.getHolding());
+        // new ItemInputBoundary(player.getLocation(), new ItemOutputBoundary()).interact(player.getHolding());
+    }
+
+
+    public void interact_spiderweb(){
+        outputBoundary.displayMessage("You push open the door through the thick, poisonous spiderweb. The venom in the web seeps " +
+                "into your skin, and you feel a sharp pain coursing through your body. Your health decreases by 2.");
+        player.setHealth(player.getHealth() - 2);
     }
 
 }

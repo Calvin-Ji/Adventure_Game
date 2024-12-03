@@ -34,6 +34,13 @@ public class actionRepositor {
         validActions.add("dragon fang sword");
         validActions.add("use the key in your hand");
         validActions.add("walk to the spiderweb");
+        validActions.add("walk to the old man");
+        validActions.add("interact the old man");
+        validActions.add("walk to wand of water");
+        validActions.add("attack it with your sword");
+        validActions.add("clean the spiderweb");
+        validActions.add("pick up key");
+        validActions.add("use key to open the door");
     }
 
     // Instance method to return all valid actions
@@ -48,15 +55,24 @@ public class actionRepositor {
             // case "walk to":
                 // playerInputBoundary.walkTo(in);
                 // break;
+            case "interact the old man":
+                break;
+
             case "walk to the mailbox":
-                playerInputBoundary.walkTo("mailbox");
+                playerInputBoundary.walkTo("key");
                 break;
             case "walk to the spiderweb":
-                playerInputBoundary.walkTo("spiderweb");
+                playerInputBoundary.walkTo("exit");
                 break;
             //case "pickup":
                 //playerInputBoundary.pickUp(in);
                 //break;
+            case "walk to the old man":
+                playerInputBoundary.walkTo("NPC");
+                break;
+            case "walk to wand of water":
+                playerInputBoundary.walkTo("Equipment");
+                break;
             case "speech":
                 break;
             case "exit":
@@ -68,8 +84,7 @@ public class actionRepositor {
                 playerInputBoundary.putInBag();
                 break;
             case "pick up key":
-                playerInputBoundary.pickUp("mailbox");
-                //这里有些问题，因为设置的key的名字叫mailbox
+                playerInputBoundary.pickUp("key");
                 break;
             case "getfrombag":
                 playerInputBoundary.getFromBag(in);
@@ -84,16 +99,17 @@ public class actionRepositor {
                 playerInputBoundary.getFromBag(in);
                 break;
             case "clean the spiderweb":
-                System.out.println("You carefully pull at the sticky threads, feeling the resistance of the web as it clings stubbornly to the door. After a few tense moments, the door is clear, revealing an ornate handle. The way forward is open!");
+                playerInputBoundary.interact("key", "exit");
                 break;
             case "attack it with your sword":
-                System.out.println("You swing your sword with determination, slicing through the thick webbing. The web starts to break apart, but the force of your attack leaves your sword slightly dull. The way forward is now open.");
                 break;
             case "use the key in your hand":
-                System.out.println("You push open the door through the thick, poisonous spiderweb. The venom in the web seeps into your skin, and you feel a sharp pain coursing through your body. Your health decreases by 2.");
-                playerInputBoundary.interact("spiderweb"); // Deduct 2 health points
+                playerInputBoundary.interact("key", "exit");
+                playerInputBoundary.interact_spiderweb(); // Deduct 2 health points
                 break;
-
+            case "use key to open the door":
+                playerInputBoundary.interact("key", "exit");
+                break;
             case "key":
                 break;
             case "sword":

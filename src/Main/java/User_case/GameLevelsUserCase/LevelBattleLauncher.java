@@ -14,5 +14,7 @@ public class LevelBattleLauncher {
     public void launchBattle(Enemy enemy) {
         Battle battle = new Battle(this.gameLevel.getPlayer(), enemy);
         gameLevel.setBattle(battle);
+        Frameworks_and_drivers.guiUtility guiUtility = new Frameworks_and_drivers.guiUtility();
+        guiUtility.displayOutput("The Battle has been launched.");
     }
 }
