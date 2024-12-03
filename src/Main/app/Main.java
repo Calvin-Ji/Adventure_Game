@@ -11,7 +11,7 @@ public class Main {
         appBuilder
                 .startGame()
 //
-//                .addTrainingRoom()
+                .addTrainingRoom()
                 .addTrainingForest()
                 //.lastHorizonValley()
                 .setupPlayerAndGUI()
