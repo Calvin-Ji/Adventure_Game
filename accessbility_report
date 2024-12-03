@@ -1,25 +1,25 @@
 Principle1: Equitable Use
-	. This principle does not apply to this project as its a text based adventure game and disabled people like blind people are unable to play at all as they cannot see. However, if with enough resource and a feature of reading the displayed text can be implemented. This principle could be adhered.
+	. We have tried to make our project as accessible as possible, as it is a text based adventure game which most people will be able to play. However, some groups such as those who are blind or have vision problems may be unable to play at all as they cannot clearly see the text being displayed. However, if with enough resources and by adding a feature of reading out loud the displayed text, this principle could be adhered to better.
 
 Principle2: Flexibility in Use
-	. Since all user need to do to play this game is to input text, the game does not test user's reaction and thus user can play the game by their own pace. The game also allows the user to do a flexible operation, such as attempting to lift the NPC or hitting enemy with a key.
+	. Since all the user needs to do to play this game is to input text, the game allows the user to play the game at their own pace. The game also allows the user to do flexible operations, such as attempting to lift a NPC or hitting an enemy with a key rather than a weapon like a sword.
 
 Principle 3: Simple and Intuitive Use
-	. The game provides hint for player if they input an invalid action. Since all player needs to do is to input text commands, the game adhere this principle well.
+	. The game provides hints for player if they input an invalid action. Since all the player needs to do is to input text commands, the game is very simple, and by providing clear instructions on what are valid inputs, the game is also very intuitive, and so our project adheres this principle well.
 
 Principle 4: Perceptible Information
-	. Since the game is a text based adventure game and cannot display image, it cannot adhere this feature.  Nor is this principle able to be adhered in future as that would completely change the purpose of the game.
+	. Since the game is a text based adventure game, we do not display images, and while adding images would be possible, such as to illustrate scenes, that would change the character of our game. The game is displayed on the screen on a Java Swing GUI, which both displays the text and allows you to input text.
 
 Principle 5: Tolerance for Error
-	. The GUI of this game can filter mistake operations very well and will show player hint when error happens. The game will not crash when a weird command is inputted.
+	. The GUI of this game can filter incorrect and invalid inputs very well and will show players hints when neccessary. The game will not crash when an invalid input is put in and will allow you to try again.
 
 Principle 6: Low Physical Effort
-	. Since the core of this game is to interpret and execute commands input by player. It cannot adhere this principle as making mistakes and learning proper command is one of the feature of this game to bring "fun" to those who enjoyed it this way.
+	. Since our game is a text based adventure game where the core of our project is to interpret and execute text commands input by players, the player simply reads the text displayed on the GUI and the inputs a valid text command into the GUI, which allows for the program to be played with low physical effort.
 
 Principle 7: Size and Space for Approach and Use
-	. This principle is well adhered since the GUI only has one textbox to input command and one button to confirm the command.
+	. This principle is well adhered to since the GUI only has one textbox to input command and one button to confirm the command. That makes our program compact and easy to use.
 
 
-The program is targeted to people who enjoys video game, especially those who likes text based adventure game as it replicates the old classic text based adventure game experience.
+The program is targeted to people who enjoy video games, especially those who like text based adventure game as it replicates the old classic text based adventure game experience that was more prevalent in the past.
 
-The program is less likely to be used by people who enjoys game with better visual feature.Or those who are unable to read due to health or other issues.
+The program is less likely to be used by people who enjoy games with better visual features and graphics or by those who are blind or have vision problems.
