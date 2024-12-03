@@ -55,8 +55,7 @@ inspect bag: Check the items in your inventory.
 put in bag: Put items into the inventory.
 walk to: Move to a specific location, such as a room or NPC.
 interact: Interact with a specific character.
-Tips
-Use the Fire Dragon Bow: This bow is very effective against fire-type monsters.
+Tips: Use the Fire Dragon Bow; this bow is very effective against fire-type monsters.
 
 ## License
 This project is licensed under the MIT License, allowing free use, modification, and distribution.
