@@ -126,7 +126,7 @@ public class AppBuilder {
         Equipment FlameDragonBow = new Equipment("Flame Dragon Bow","A legendary weapon bestowed by the Flame Dragon " +
                 "itself, each bow is engulfed in roaring flames. When fired, it burns as fiercely as the dragon's " +
                 "breath.","on the floor",3,"fire");
-        Item Oldman = new NPC("NPC","An elderly scavenger","by the side of the forest",
+        NPC Oldman = new NPC("NPC","An elderly scavenger","by the side of the forest",
                 "One man’s scrap is another’s treasure. What will your story leave behind, traveler?");
         Equipment wandofwater = new Equipment("Equipment","A crystal wand etched with glowing " +
                 "blue runes, it channels the tranquil yet powerful essence of water, controlling tides and unleashing " +
@@ -167,6 +167,10 @@ public class AppBuilder {
         String action2 = guiUtility.getValidInput("After a hard-fought victory, you catch your breath and look" +
                 " at the old man.(type 'interact' to talk to the old man)", actionRepositor.getValidActions());
         actionRepository.handleAction(action2);
+        guiUtility.displayOutput(Oldman.getSpeech());
+        guiUtility.displayOutput(Oldman.getRiddle());
+        guiUtility.displayOutput("Do you have the answer now? Here is your answer");
+        guiUtility.displayOutput(Oldman.getAnswer());
         // API skip
         guiUtility.displayOutput("After solving it, you feel a strange sensation and decide to move forward.");
 
