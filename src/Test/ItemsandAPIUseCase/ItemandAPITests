@@ -12,7 +12,7 @@ import Entity.Item;
 import User_case.Items_Usercase.ItemOutputBoundaryInterface;
 import User_case.Items_Usercase.ItemInputBoundary;
 
-class ItemInputBoundaryTest {
+class ItemandAPITests {
 
     private ItemInputBoundary itemInputBoundary;
     private ItemOutputBoundaryInterface outputBoundary;
