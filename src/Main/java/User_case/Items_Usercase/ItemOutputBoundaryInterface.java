@@ -6,4 +6,6 @@ public interface ItemOutputBoundaryInterface {
      * @param message The message to be displayed.
      */
     void displayOutput(String message);
+
+    String getMessage();
 }

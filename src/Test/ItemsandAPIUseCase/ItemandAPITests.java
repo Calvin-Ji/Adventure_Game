@@ -1,4 +1,4 @@
-package User_case.Items_Usercase;
+package ItemsandAPIUseCase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +10,7 @@ import Entity.Key;
 import Entity.NPC;
 import Entity.Item;
 import User_case.Items_Usercase.ItemOutputBoundaryInterface;
+import User_case.Items_Usercase.ItemOutputBoundary;
 import User_case.Items_Usercase.ItemInputBoundary;
 
 class ItemandAPITests {
@@ -118,5 +119,5 @@ class ItemandAPITests {
         assertNotNull(npc.getRiddle());
         assertNotNull(npc.getAnswer());
     }
-    
+
 }
